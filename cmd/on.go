@@ -54,7 +54,7 @@ func init() {
 	rootCmd.AddCommand(onCmd)
 
 	onCmd.Flags().IntP("brightness", "b", 0, "Brightness value between 1 and 100")
-	onCmd.Flags().IntP("temperature", "t", 0, "Temperature value between 2700 (cool) and 6500 (warm)")
+	onCmd.Flags().IntP("temperature", "t", 0, "Temperature value between 2700 (warm) and 6500 (cool)")
 
 	// Here you will define your flags and configuration settings.
 
