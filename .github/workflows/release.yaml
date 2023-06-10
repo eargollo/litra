@@ -23,6 +23,6 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         goos: ${{ matrix.goos }}
         goarch: ${{ matrix.goarch }}
-        goversion: "go1.20.5"
+        goversion: "1.20.5"
         project_path: "litra"
         binary_name: "litra"
