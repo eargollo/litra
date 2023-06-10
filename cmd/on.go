@@ -24,6 +24,27 @@ litra on --brightness 100 --temperature 100`,
 			fmt.Printf("Could not find litra light: %v", err)
 			return
 		}
+
+		brightness, err := cmd.Flags().GetInt("brightness")
+		if err != nil {
+			fmt.Printf("Could not get brightness: %v, keeping existing value", err)
+			brightness = 0
+		}
+		if brightness > 0 {
+			fmt.Printf("Setting brightness to %d\n", brightness)
+			ld.SetBrightness(brightness)
+		}
+
+		temperature, err := cmd.Flags().GetInt("temperature")
+		if err != nil {
+			fmt.Printf("Could not get temperature: %v, keeping existing value", err)
+			temperature = 0
+		}
+		if temperature > 0 {
+			fmt.Printf("Setting temperature to %d\n", temperature)
+			ld.SetTemperature((int16)(temperature))
+		}
+
 		defer ld.Close()
 		ld.TurnOn()
 	},
@@ -31,6 +52,9 @@ litra on --brightness 100 --temperature 100`,
 
 func init() {
 	rootCmd.AddCommand(onCmd)
+
+	onCmd.Flags().IntP("brightness", "b", 0, "Brightness value between 1 and 100")
+	onCmd.Flags().IntP("temperature", "t", 0, "Temperature value between 2700 (cool) and 6500 (warm)")
 
 	// Here you will define your flags and configuration settings.
 
